@@ -35,8 +35,8 @@ public class PlayerLook : MonoBehaviour
         // Update previousDirection with current direction for next iteration.
         previousMouseDelta = mouseDelta;
 
-        float yaw = mouseDelta.x * mouseSensitivity * Time.deltaTime;
-        transform.parent.Rotate(Vector3.up * yaw);
+        float cameraYaw = mouseDelta.x * mouseSensitivity * Time.deltaTime;
+        transform.parent.Rotate(Vector3.up * cameraYaw);
 
         cameraPitch -= mouseDelta.y * mouseSensitivity * Time.deltaTime;
         cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f);
