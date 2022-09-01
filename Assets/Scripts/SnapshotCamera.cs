@@ -13,6 +13,7 @@ public class SnapshotCamera : MonoBehaviour
     private Camera snapshotCamera;
     private Texture2D snapshot;
     private bool isTakingSnapshot;
+    private bool snapshotWasTaken;
 
     public void Awake()
     {
@@ -22,6 +23,7 @@ public class SnapshotCamera : MonoBehaviour
         snapshotCamera.enabled = false;
         snapshot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
         isTakingSnapshot = false;
+        snapshotWasTaken = false;
     }
 
     public void OnEnable()
@@ -39,6 +41,7 @@ public class SnapshotCamera : MonoBehaviour
         if (isTakingSnapshot)
         {
             isTakingSnapshot = false;
+            snapshotWasTaken = true;
             StartCoroutine(CaptureSnapshot());
         }
     }
@@ -70,7 +73,7 @@ public class SnapshotCamera : MonoBehaviour
 
     public void Snap(InputAction.CallbackContext context)
     {
-        if (!isTakingSnapshot)
+        if (!isTakingSnapshot && !snapshotWasTaken)
         {
             isTakingSnapshot = true;
             snapshotCamera.enabled = true;

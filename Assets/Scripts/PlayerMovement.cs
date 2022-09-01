@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
         // In the case of a keyboard this value is always 1 when a key is pressed.
         Vector2 movementInput = actions.Player.Move.ReadValue<Vector2>();
         Move(movementInput);
-        Debug.Log(controller.velocity.magnitude);
     }
 
     public void Move(Vector2 targetDirection)
